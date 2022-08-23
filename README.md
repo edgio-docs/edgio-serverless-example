@@ -13,6 +13,13 @@ Configuration is explicit so the project structure is entirely up to you.
 0 dev --cache # enable caching in development
 ```
 
+Try some test URLs:
+
+```
+LAYER0_CURL_SHOW_BODY=true 0 curl http://localhost:3000/hello/world
+LAYER0_CURL_SHOW_BODY=true 0 curl http://localhost:3000/this/route/is/not/defined
+```
+
 ## Deploying
 
 ```
