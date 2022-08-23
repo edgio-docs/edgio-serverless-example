@@ -1,0 +1,12 @@
+{
+  "name": "layer0-serverless-example",
+  "version": "1.0.0",
+  "description": "This example project shows you how to deploy serverless functions on Layer0 without a web framework.",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "@layer0/cli": "^4.18.3",
+    "@layer0/core": "^4.18.3",
+    "@layer0/devtools": "^4.18.3",
+    "@layer0/prefetch": "^4.18.3"
+  }
+}
