@@ -1,6 +1,7 @@
 import { Router } from "@layer0/core/router";
 import fallback from "./functions/fallback";
 import hello from "./functions/hello";
+import log from "./functions/log";
 
 export default new Router()
   .get("/hello/:name", ({ compute, cache }) => {
@@ -12,6 +13,5 @@ export default new Router()
     });
     compute(hello);
   })
-  .fallback(({ compute }) => {
-    return compute(fallback);
-  });
+  .post("/log", ({ compute }) => compute(log))
+  .fallback(({ compute }) => compute(fallback));
