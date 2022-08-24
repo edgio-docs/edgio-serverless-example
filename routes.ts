@@ -12,4 +12,6 @@ export default new Router()
     });
     compute(hello);
   })
-  .fallback(({ compute }) => compute(fallback));
+  .fallback(({ compute }) => {
+    return compute(fallback);
+  });
