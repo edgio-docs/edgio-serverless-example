@@ -2,7 +2,7 @@ import Request from "@layer0/core/router/Request";
 import Response from "@layer0/core/router/Response";
 
 /**
- * get /hello/:name
+ * GET /hello/:name
  * @param req The request
  * @param res The response
  */

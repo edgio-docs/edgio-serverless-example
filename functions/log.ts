@@ -1,45 +1,32 @@
 import Request from "@layer0/core/router/Request";
 import Response from "@layer0/core/router/Response";
-import Zlib from "zlib";
+import { unzipSync } from "zlib";
+import toArrayBuffer from "../utils/toArrayBuffer";
+
 /**
- * This function is called for all requests that don't match a route.
+ * POST /log
+ *
+ * Here's an example that shows you how to handle compressed POST bodies using zlib.
+ *
+ * Here's an example cURL that you can use to test this function locally:
+ * curl -v -H 'Content-Encoding: gzip' --data-binary @requests/logs.json.gz http://localhost:3000/log
+ *
  * @param req The request
  * @param res The response
  */
 export default function log(req: Request, res: Response) {
-  return new Promise<void>((resolve, reject) => {
-    Zlib.gunzip(toArrayBuffer(req.rawBody), (error, result) => {
-      if (error) {
-        reject(error);
-        return;
-      }
+  const { rawBody } = req;
 
-      // Here's how you set a response header
-      res.setHeader("content-type", "application/json");
-      res.body = JSON.stringify({
-        // here's how you access the incoming request body
-        body: result.toString(),
-      });
-
-      resolve();
-    });
-  });
-
-  // If you want to add a custom response status:
-  // res.statusCode = 599;
-  // res.statusMessage = "WTF";
-}
-
-/*
-Here's an example cURL:
-curl -v -H 'Content-Encoding: gzip' --data-binary @logs.json.gz http://localhost:3000/log
-*/
-
-function toArrayBuffer(buf) {
-  const ab = new ArrayBuffer(buf.length);
-  const view = new Uint8Array(ab);
-  for (let i = 0; i < buf.length; ++i) {
-    view[i] = buf[i];
+  try {
+    if (rawBody) {
+      const body = unzipSync(toArrayBuffer(rawBody));
+      res.body = JSON.stringify({ body: body.toString() });
+    } else {
+      throw new Error("The request must contain a body.");
+    }
+  } catch (e) {
+    res.statusCode = 400;
+    res.statusMessage = "Bad Request";
+    res.body = JSON.stringify({ message: e.message, stack: e.stack });
   }
-  return ab;
 }

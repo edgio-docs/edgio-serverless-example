@@ -3,7 +3,7 @@
 // Learn more about this file at https://docs.layer0.co/guides/layer0_config
 module.exports = {
   // The name of the site in Layer0 to which this app should be deployed.
-  name: "layer0-compute",
+  name: "layer0-serverless-example",
 
   // The name of the team in Layer0 to which this app should be deployed.
   // team: 'my-team-name',

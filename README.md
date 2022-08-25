@@ -18,6 +18,7 @@ Try some test URLs:
 ```
 LAYER0_CURL_SHOW_BODY=true 0 curl http://localhost:3000/hello/world
 LAYER0_CURL_SHOW_BODY=true 0 curl http://localhost:3000/this/route/is/not/defined
+curl -v -H 'Content-Encoding: gzip' --data-binary @requests/logs.json.gz http://localhost:3000/log
 ```
 
 ## Deploying
