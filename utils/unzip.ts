@@ -1,4 +1,4 @@
-import Request from "@layer0/core/router/Request";
+import Request from "@edgio/core/router/Request";
 import Zlib from "zlib";
 
 /**

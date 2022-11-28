@@ -1,5 +1,5 @@
-import Request from "@layer0/core/router/Request";
-import Response from "@layer0/core/router/Response";
+import Request from "@edgio/core/router/Request";
+import Response from "@edgio/core/router/Response";
 import { unzipSync } from "zlib";
 import toArrayBuffer from "../utils/toArrayBuffer";
 

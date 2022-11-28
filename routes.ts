@@ -1,4 +1,4 @@
-import { Router } from "@layer0/core/router";
+import { Router } from "@edgio/core/router";
 import fallback from "./functions/fallback";
 import hello from "./functions/hello";
 import log from "./functions/log";
